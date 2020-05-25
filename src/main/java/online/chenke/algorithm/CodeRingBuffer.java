@@ -1,7 +1,7 @@
 package online.chenke.algorithm;
 
 /**
- * 环形buffer
+ * ringbuffer
  */
 public class CodeRingBuffer {
 
@@ -19,7 +19,6 @@ public class CodeRingBuffer {
         myQueue.push(3);
 
         System.out.println(myQueue.pop());
-
     }
 
     static class MyQueue{
