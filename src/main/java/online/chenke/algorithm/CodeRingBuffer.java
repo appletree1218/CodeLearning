@@ -1,4 +1,4 @@
-package online.chenke;
+package online.chenke.algorithm;
 
 /**
  * 环形buffer

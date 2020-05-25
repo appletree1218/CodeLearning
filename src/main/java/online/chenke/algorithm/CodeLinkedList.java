@@ -1,4 +1,4 @@
-package online.chenke;
+package online.chenke.algorithm;
 
 /**
  * 单、双向链表反转
