@@ -1,4 +1,4 @@
-package online.chenke.sourcecode;
+package online.chenke.sourcecode.spring;
 
 public class User {
     private String name;

@@ -1,6 +1,5 @@
-package online.chenke;
+package online.chenke.sourcecode.spring;
 
-import online.chenke.sourcecode.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
