@@ -691,7 +691,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
      * See Hackers Delight, sec 3.2
      *
      * 这个方法很奇怪为什么传参数之前要先+1，然后再-1，最后返回的时候要再+1？
-     *
+     * 答：是为了避免传入的参数正好是2的n次幂的时候数组扩容为原来的两倍
      */
     private static final int tableSizeFor(int c) {
         /**
