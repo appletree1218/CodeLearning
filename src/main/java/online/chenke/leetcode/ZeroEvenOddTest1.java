@@ -6,10 +6,10 @@ import java.util.function.IntConsumer;
 /**
  * 交替打印0和奇偶数
  */
-public class ZeroEvenOddTest {
+public class ZeroEvenOddTest1 {
     public static void main(String[] args) {
         int n = 5;
-        ZeroEvenOdd zeroEvenOdd = new ZeroEvenOdd(n);
+        ZeroEvenOdd1 zeroEvenOdd = new ZeroEvenOdd1(n);
 
         IntConsumer zeroConsumer = System.out::print;
         IntConsumer evenConsumer = System.out::print;
@@ -41,43 +41,57 @@ public class ZeroEvenOddTest {
 
 }
 
-class ZeroEvenOdd {
+class ZeroEvenOdd1 {
     private int n;
+    private int index=0;
 
-    Semaphore zeroSemaphore = new Semaphore(1);
-    Semaphore evenSemaphore = new Semaphore(0);
-    Semaphore oddSemaphore = new Semaphore(0);
-
-    public ZeroEvenOdd(int n) {
+    public ZeroEvenOdd1(int n) {
         this.n = n;
     }
 
     // printNumber.accept(x) outputs "x", where x is an integer.
     public void zero(IntConsumer printNumber) throws InterruptedException {
-        for (int i=0;i<n;i++){
-            zeroSemaphore.acquire();
-            printNumber.accept(0);
-            if(i%2==0){
-                oddSemaphore.release();
-            }else{
-                evenSemaphore.release();
+        for (int i=0;i<n;){
+            synchronized (this){
+                if(index%2==0){
+                    printNumber.accept(0);
+                    index++;
+                    i++;
+                    this.notifyAll();
+                }else{
+                    this.wait();
+                }
             }
         }
     }
 
     public void even(IntConsumer printNumber) throws InterruptedException {
-        for (int i=2;i<=n;i+=2){
-            evenSemaphore.acquire();
-            printNumber.accept(i);
-            zeroSemaphore.release();
+        for (int j=2;j<=n;){
+            synchronized (this) {
+                if(index%2!=0 && (index+1)/2%2==0){
+                    printNumber.accept(j);
+                    j+=2;
+                    index++;
+                    this.notifyAll();
+                }else{
+                    this.wait();
+                }
+            }
         }
     }
 
     public void odd(IntConsumer printNumber) throws InterruptedException {
-        for (int i=1;i<=n;i+=2){
-            oddSemaphore.acquire();
-            printNumber.accept(i);
-            zeroSemaphore.release();
+        for (int j=1;j<=n;){
+            synchronized (this) {
+                if(index%2!=0 && (index+1)/2%2!=0){
+                    printNumber.accept(j);
+                    index++;
+                    j+=2;
+                    this.notifyAll();
+                }else{
+                    this.wait();
+                }
+            }
         }
     }
 }
