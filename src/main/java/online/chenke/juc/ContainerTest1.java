@@ -60,16 +60,17 @@ class CustomContainer1<T>{
     }
 
     public synchronized T get() throws InterruptedException {
+        T t = null;
         while (list.size()==0){
             System.out.println("空了");
             this.wait();
-
-            return null;
         }
 
         size--;
         this.notifyAll();
-        return list.poll();
+        t = list.poll();
+
+        return t;
     }
 
 }
