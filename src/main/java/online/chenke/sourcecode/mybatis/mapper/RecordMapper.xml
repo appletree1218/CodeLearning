@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.chenke.sourcecode.mybatis.mapper.RecordMapper">
+    <select id="selectRecord" resultType="java.util.Map">
+        select RecordId from TAIRecord
+        <where>
+            RecordId = #{recordId}
+        </where>
+        ORDER BY StartTime DESC LIMIT 1
+    </select>
+</mapper>
