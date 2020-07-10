@@ -15,6 +15,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="online/chenke/sourcecode/mybatis/mapper/ScaleRecordMapper.xml"/>
+        <mapper resource="online/chenke/sourcecode/mybatis/mapper/RecordMapper.xml"/>
     </mappers>
 </configuration>
