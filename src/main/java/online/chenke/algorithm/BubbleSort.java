@@ -1,4 +1,4 @@
-package online.chenke.algorithm.sort;
+package online.chenke.algorithm;
 
 import java.util.Arrays;
 
